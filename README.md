@@ -3,7 +3,7 @@
     <a><img src="images/LaMini-LM-solo.png" alt="Title" style="width: 20%; min-width: 300px; display: block; margin: auto;"></a>
 </p> -->
 
-# uDistil-Whisper: Label-Free Data Filtering for Knowledge Distillation in Low-Data Regimes
+# uDistil-Whisper: Label-Free Data Filtering for Knowledge Distillation in Low-Data Regimes ( NAACL'2025 )
 
 <p align="center"><a href="https://macabdul9.github.io/" target="_blank">Abdul Waheed</a>, <a href="Karima Kadaoui
 " target="_blank">Karima Kadoui</a>,  <a href="https://scholar.google.com/citations?user=IWcGY98AAAAJ&hl=en"> Bhiksha Raj</a> <a href="https://mageed.arts.ubc.ca/" target="_blank">Muhammad Abdul-Mageed</a></p>
