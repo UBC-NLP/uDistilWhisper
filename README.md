@@ -58,8 +58,8 @@ python evaluate.py --model_name_or_path UBC-NLP/distil-large-v2-init-8-8-100K-22
 <!-- #### Swahili Results
 
 <!-- Swahili Results saved at assets/results_swahili.png -->
-<image src="assets/results_swahili.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;"> -->
-
+<!-- <image src="assets/results_swahili.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;"> -->
+ <!-- -->
 
 ## Data
 ### Training Dataset
