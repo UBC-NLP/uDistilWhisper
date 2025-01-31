@@ -13,10 +13,60 @@
   <img src="assets/MBZUAI-logo.png" height="40" />
 </p>
 
+<!-- TOC -->
+
+- [Data](#data)
+- [Models](#models)
+- [Evaluation](#evaluation)
+- [Results](#results)
+- [Citation](#citation)
+
+<!-- /TOC -->
 
 
+<!-- I want text in red -->
+<font color='red'>Note: Do not public OpenBible data as it is behind LDC paywall and we don't have authority to share the data publically. https://www.ldc.upenn.edu/data-management/using-data/user-agreements/iarpa-swahili.</font>
 
-### Models
+
+## Data
+### Training Dataset
+| Dataset                                     | Path                                                                                                                  |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| Dataset-100K    | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_100K](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_100K)    |
+| Dataset-500K    | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_500K](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_500K)    |
+| Dataset-1M      | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_1M](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_1M)          |
+
+### Evaluation Dataset
+| Dataset                                           | Description                                                                                   |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| [Fleurs](https://huggingface.co/datasets/google/fleurs)           | Multilingual speech dataset aimed at evaluating speech-to-text systems. We use `test` and `validation` split of `ar_eg` part.                     |
+| [Common Voice](https://huggingface.co/datasets/mozilla-foundation/common_voice_15_0) | A crowdsourced initiative to create a free and publicly available dataset of diverse voices.We use three versions of Common Voice, [CV-6.1](https://huggingface.co/datasets/mozilla-foundation/common_voice_6_1), [CV-9.0](https://huggingface.co/datasets/mozilla-foundation/common_voice_9_0), [CV-11.0](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0), and [CV-15.0](https://huggingface.co/datasets/mozilla-foundation/common_voice_15_0) |
+| [MGB2](https://huggingface.co/datasets/UBC-NLP/MGB2-Eval)               | Dataset focused on broadcast news analysis, part of the MGB Challenge, which contains rougly 70% MSA and rest are dialects mainly - Egyptian (EGY), Gulf (GLF), Lev- antine (LEV), and North African (NOR) . We use `test` and `validation` split.                        |
+| [MGB3](https://huggingface.co/datasets/UBC-NLP/MGB3)               | This dataset includes 80 programs from Egyptian YouTube channels across various genres, with 4.8 hours of transcribed data from the first 12 minutes of each program. We evaluate our models on `test` and `validation` split.                      |
+| [MGB5](https://huggingface.co/datasets/UBC-NLP/MGB5)               | This dataset includes 10.2 hours of Moroccan Arabic speech data from 93 YouTube videos across seven genres like comedy, cooking, and sports. We evaluate our models on `test` and `validation` split.              |
+
+#### Swahili Dataset
+### Training Data Table
+
+| Dataset                                   | Description                                                                                   |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------|
+| UBC-NLP/BabelSwahili-Scripted             | Scripted Swahili dataset                                                                      |
+| UBC-NLP/BabelSwahili-Conversation         | Conversational Swahili dataset                                                               |
+| UBC-NLP/AMMI-LigAikuma-Swahili            | Swahili dataset from the LigAikuma project                                                   |
+| UBC-NLP/DVoice_Swahili                    | Swahili voice dataset                                                                         |
+
+### Evaluation Data
+
+| Dataset                                   | Description                                                                                   |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------|
+| UBC-NLP/OpenBible_Swahili-Eval            | Swahili evaluation dataset from the OpenBible project                                         |
+| UBC-NLP/CommonVoice17_Swahili-Eval        | Evaluation dataset for Swahili from CommonVoice17                                             |
+| UBC-NLP/ALFAA_Swahili-Eval                | Evaluation dataset for Swahili from the ALFAA project                                         |
+| UBC-NLP/BabelSwahili-Conversation-Eval    | Conversational Swahili evaluation dataset                                                    |
+| UBC-NLP/Fleurs_Swahili-eval               | Evaluation dataset for Swahili from the Fleurs project                                        |
+
+
+## Models
 #### Main Models
 
 | Model                                         | Path                                                                                                           |
@@ -30,117 +80,21 @@
 
 
 
-### Training Dataset
-| Dataset                                     | Path                                                                                                                  |
-|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| Dataset-100K    | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_100K](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_100K)    |
-| Dataset-500K    | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_500K](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_500K)    |
-| Dataset-1M      | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_1M](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_1M)          |
-
-
-
-### Evaluation Dataset
-| Dataset                                           | Description                                                                                   |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| [Fleurs](https://huggingface.co/datasets/google/fleurs)           | Multilingual speech dataset aimed at evaluating speech-to-text systems. We use `test` and `validation` split of `ar_eg` part.                     |
-| [Common Voice](https://huggingface.co/datasets/mozilla-foundation/common_voice_15_0) | A crowdsourced initiative to create a free and publicly available dataset of diverse voices.We use three versions of Common Voice, [CV-6.1](https://huggingface.co/datasets/mozilla-foundation/common_voice_6_1), [CV-9.0](https://huggingface.co/datasets/mozilla-foundation/common_voice_9_0), [CV-11.0](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0), and [CV-15.0](https://huggingface.co/datasets/mozilla-foundation/common_voice_15_0) |
-| [MGB2](https://huggingface.co/datasets/UBC-NLP/MGB2-Eval)               | Dataset focused on broadcast news analysis, part of the MGB Challenge, which contains rougly 70% MSA and rest are dialects mainly - Egyptian (EGY), Gulf (GLF), Lev- antine (LEV), and North African (NOR) . We use `test` and `validation` split.                        |
-| [MGB3](https://huggingface.co/datasets/UBC-NLP/MGB3)               | This dataset includes 80 programs from Egyptian YouTube channels across various genres, with 4.8 hours of transcribed data from the first 12 minutes of each program. We evaluate our models on `test` and `validation` split.                      |
-| [MGB5](https://huggingface.co/datasets/UBC-NLP/MGB5)               | This dataset includes 10.2 hours of Moroccan Arabic speech data from 93 YouTube videos across seven genres like comedy, cooking, and sports. We evaluate our models on `test` and `validation` split.              |
-
 
 ### Results
 
-### Training 
-We train our models using the codebase developed by [Gandhi et al.](https://github.com/huggingface/distil-whisper) and express our gratitude for their open-sourcing it. After processing our data into the required format, we train our models in three steps. Please follow the steps below for training/distillation.
+#### Main Results
+<!-- Add image -->
+<image src="assets/main_results.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 
-0. **Clone**  `distil-whisper` [fork repo](https://github.com/macabdul9/distil-whisper) and change the directory.
+<!-- Add other_results.png -->
+<image src="assets/other_results.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 
-```
-git clone git@github.com:macabdul9/distil-whisper.git && cd distil-whisper
-```
+#### Swahili Results
 
-1. **pip install the required packages from the** `setup.py` **file:**
-```
-cd training
-pip install -e .
-cd ..
-```
+<!-- Swahili Results saved at assets/results_swahili.png -->
+<image src="assets/results_swahili.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 
-2. **Student Initialization**: ```bash scripts/student_initialization.sh```
-OR:
-```
-python training/create_student_model.py \
-  --teacher_checkpoint "openai/whisper-large-v2" \
-  --encoder_layers 32 \
-  --decoder_layers 16 \
-  --save_dir "./models/init-32-16"
-```
-
-3. **Psudo Labelling**: ```bash scripts/pseudo_labelling.sh``` OR:
-```
-accelerate launch training/run_pseudo_labelling.py \
-  --model_name_or_path "openai/whisper-large-v2" \
-  --dataset_name "masc_cv15_asc_fleurs_mgb5_mgb2_qasr_100K" \
-  --load_from_disk False \
-  --max_samples_per_split 1000 \
-  --text_column_name "text" \
-  --audio_column_name "audio" \
-  --id_column_name "id" \
-  --output_dir "./data/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_pseudo_labelled-v2-100K-225" \
-  --wandb_project "distil-whisper-labelling" \
-  --per_device_eval_batch_size 80 \
-  --dtype "bfloat16" \
-  --dataloader_num_workers 8 \
-  --preprocessing_num_workers 8 \
-  --logging_steps 500 \
-  --max_label_length 225 \
-  --language "ar" \
-  --task "transcribe" \
-  --return_timestamps \
-  --streaming False \
-  --generation_num_beams 1 \
-  --decode_token_ids False \
-```
-
-4. **Distillation/Training**: ```bash scripts/distillation.sh``` OR:
-```
-torchrun --standalone --nnodes=1 --nproc-per-node=8 training/run_distillation.py \
-    --model_name_or_path "./models/init-32-16" \
-    --teacher_model_name_or_path "openai/whisper-large-v2" \
-    --output_dir "models/distil-large-v2-init-32-16-100K-225" \
-    --train_dataset_name "./data/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_pseudo_labelled-v2-100K-225" \
-    --train_split_name "train" \
-    --eval_split_name "test" \
-    --text_column_name "text" \
-    --max_train_samples 1000 \
-    --max_eval_samples 1000 \
-    --save_steps 1000 \
-    --warmup_steps 50 \
-    --learning_rate 0.0001 \
-    --lr_scheduler_type "constant_with_warmup" \
-    --logging_steps 25 \
-    --save_total_limit 1 \
-    --num_train_epochs 10 \
-    --wer_threshold 80 \
-    --max_label_length 225 \
-    --per_device_train_batch_size 16 \
-    --per_device_eval_batch_size 16 \
-    --gradient_accumulation_steps 1 \
-    --dataloader_num_workers 4 \
-    --preprocessing_num_workers 4 \
-    --preprocessing_batch_size 1000 \
-    --ddp_timeout 28800 \
-    --dtype "bfloat16" \
-    --do_train \
-    --gradient_checkpointing \
-    --predict_with_generate \
-    --streaming False \
-    --overwrite_output_dir \
-
-```
-
-**Note**: Pseudo labelling and training is limited to 1000 examples for quick dry run. Please remove/unset the relevant agrs to run for whole dataset.
 
 ### Citation 
 Please use the following bibtex to cite our work. 
@@ -192,3 +146,9 @@ We also request you to cite original Whisper paper.
 ```
 
 ### Acknowledgement
+
+### Licence
+
+### Contact
+For any queries, please contact Abdul Waheed (abdulwaheed1513@gmai.com) or Karima Kadaoui ( email@karima.com). 
+
