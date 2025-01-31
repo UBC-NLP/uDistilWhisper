@@ -15,10 +15,10 @@
 
 <!-- TOC -->
 
-- [Data](#data)
 - [Models](#models)
 - [Evaluation](#evaluation)
 - [Results](#results)
+- [Data](#data)
 - [Citation](#citation)
 
 <!-- /TOC -->
@@ -26,6 +26,39 @@
 
 <!-- I want text in red -->
 <font color='red'>Note: Do not public OpenBible data as it is behind LDC paywall and we don't have authority to share the data publically. https://www.ldc.upenn.edu/data-management/using-data/user-agreements/iarpa-swahili.</font>
+
+
+## Models
+#### Main Models
+
+| Model                                         | Path                                                                                                           |
+|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| distil-large-v2-init-8-8-100K-225             | [distil-large-v2-init-8-8-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-8-8-100K-225)           |								
+| distil-large-v2-init-16-16-100K-225           | [distil-large-v2-init-16-16-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-100K-225)       |								
+| distil-large-v2-init-16-16-500K-225           | [distil-large-v2-init-16-16-500K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-500K-225)       |								
+| distil-large-v2-init-16-32-100K-225           | [distil-large-v2-init-16-32-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-32-100K-225)       |								
+| distil-large-v2-init-32-16-100K-225           | [distil-large-v2-init-32-16-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-100K-225)       |								
+| distil-large-v2-init-32-16-500K-225           | [distil-large-v2-init-32-16-500K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-500K-225)       |								
+
+### Evaluation
+```bash
+python evaluate.py --model_name_or_path UBC-NLP/distil-large-v2-init-8-8-100K-225 --dataset_name google/fleurs --split test
+```
+
+
+
+### Results
+ 
+<!-- Add image -->
+<image src="assets/main_results.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
+
+<!-- Add other_results.png -->
+<image src="assets/other_results.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
+
+<!-- #### Swahili Results
+
+<!-- Swahili Results saved at assets/results_swahili.png -->
+<image src="assets/results_swahili.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;"> -->
 
 
 ## Data
@@ -46,7 +79,7 @@
 | [MGB5](https://huggingface.co/datasets/UBC-NLP/MGB5)               | This dataset includes 10.2 hours of Moroccan Arabic speech data from 93 YouTube videos across seven genres like comedy, cooking, and sports. We evaluate our models on `test` and `validation` split.              |
 
 #### Swahili Dataset
-### Training Data Table
+### Training Data
 
 | Dataset                                   | Description                                                                                   |
 |-------------------------------------------|-----------------------------------------------------------------------------------------------|
@@ -65,35 +98,6 @@
 | UBC-NLP/BabelSwahili-Conversation-Eval    | Conversational Swahili evaluation dataset                                                    |
 | UBC-NLP/Fleurs_Swahili-eval               | Evaluation dataset for Swahili from the Fleurs project                                        |
 
-
-## Models
-#### Main Models
-
-| Model                                         | Path                                                                                                           |
-|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| distil-large-v2-init-8-8-100K-225             | [distil-large-v2-init-8-8-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-8-8-100K-225)           |								
-| distil-large-v2-init-16-16-100K-225           | [distil-large-v2-init-16-16-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-100K-225)       |								
-| distil-large-v2-init-16-16-500K-225           | [distil-large-v2-init-16-16-500K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-500K-225)       |								
-| distil-large-v2-init-16-32-100K-225           | [distil-large-v2-init-16-32-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-32-100K-225)       |								
-| distil-large-v2-init-32-16-100K-225           | [distil-large-v2-init-32-16-100K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-100K-225)       |								
-| distil-large-v2-init-32-16-500K-225           | [distil-large-v2-init-32-16-500K-225](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-500K-225)       |								
-
-
-
-
-### Results
-
-#### Main Results
-<!-- Add image -->
-<image src="assets/main_results.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
-
-<!-- Add other_results.png -->
-<image src="assets/other_results.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
-
-#### Swahili Results
-
-<!-- Swahili Results saved at assets/results_swahili.png -->
-<image src="assets/results_swahili.png" alt="Results" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 
 
 ### Citation 
