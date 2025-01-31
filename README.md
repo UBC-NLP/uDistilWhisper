@@ -5,7 +5,7 @@
 
 # uDistil-Whisper: Label-Free Data Filtering for Knowledge Distillation in Low-Data Regimes
 
-<a href="https://macabdul9.github.io/" target="_blank">Abdul Waheed</a>, <a href="Karima Kadaoui
+<p align="center"><a href="https://macabdul9.github.io/" target="_blank">Abdul Waheed</a>, <a href="Karima Kadaoui
 " target="_blank">Karima Kadoui</a>,  <a href="https://scholar.google.com/citations?user=IWcGY98AAAAJ&hl=en"> Bhiksha Raj</a> <a href="https://mageed.arts.ubc.ca/" target="_blank">Muhammad Abdul-Mageed</a></p>
 <p align="center" float="left">
   <img src="assets/cmu_logo.png" height="40" />
