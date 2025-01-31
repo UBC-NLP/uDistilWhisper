@@ -3,7 +3,8 @@
     <a><img src="images/LaMini-LM-solo.png" alt="Title" style="width: 20%; min-width: 300px; display: block; margin: auto;"></a>
 </p> -->
 
-# LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions
+# uDistil-Whisper: Label-Free Data Filtering for Knowledge Distillation in Low-Data Regimes
+
 <a href="https://macabdul9.github.io/" target="_blank">Abdul Waheed</a>, <a href="Karima Kadaoui
 " target="_blank">Karima Kadoui</a>,  <a href="https://scholar.google.com/citations?user=IWcGY98AAAAJ&hl=en"> Bhiksha Raj</a> <a href="https://mageed.arts.ubc.ca/" target="_blank">Muhammad Abdul-Mageed</a></p>
 <p align="center" float="left">
