@@ -5,8 +5,7 @@
 
 # uDistil-Whisper: Label-Free Data Filtering for Knowledge Distillation in Low-Data Regimes ( NAACL'2025 )
 
-<p align="center"><a href="https://macabdul9.github.io/" target="_blank">Abdul Waheed</a>, <a href="Karima Kadaoui
-" target="_blank">Karima Kadoui</a>,  <a href="https://scholar.google.com/citations?user=IWcGY98AAAAJ&hl=en"> Bhiksha Raj</a>, <a href="https://mageed.arts.ubc.ca/" target="_blank">Muhammad Abdul-Mageed</a></p>
+<p align="center"><a href="https://macabdul9.github.io/" target="_blank">Abdul Waheed</a>, <a href="https://www.linkedin.com/in/karima-kadaoui-960923b7/" target="_blank">Karima Kadaoui</a>,  <a href="https://scholar.google.com/citations?user=IWcGY98AAAAJ&hl=en"> Bhiksha Raj</a>,, <a href="https://mageed.arts.ubc.ca/" target="_blank">Muhammad Abdul-Mageed</a></p>
 <p align="center" float="left">
   <img src="assets/cmu_logo.png" height="40" />
   <img src="assets/ubc_logo.png" height="40" />
@@ -25,7 +24,8 @@
 
 
 <!-- I want text in red -->
-<font color='red'>Note: Do not public OpenBible data as it is behind LDC paywall and we don't have authority to share the data publically. https://www.ldc.upenn.edu/data-management/using-data/user-agreements/iarpa-swahili.</font>
+> [!CAUTION]
+> Note: Do NOT publish OpenBible data as it is behind the LDC paywall and we do not have authority to share the data publicly. https://www.ldc.upenn.edu/data-management/using-data/user-agreements/iarpa-swahili
 
 
 ## Running Evaluation 
@@ -180,5 +180,5 @@ We also request you to cite original Whisper paper.
 ### Licence
 
 ### Contact
-For any queries, please contact Abdul Waheed (abdulwaheed1513@gmai.com) or Karima Kadaoui ( email@karima.com). 
+For any queries, please contact Abdul Waheed (abdulwaheed1513@gmail.com) or Karima Kadaoui (karima.kadaoui@gmail.com). 
 
