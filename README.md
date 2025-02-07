@@ -6,7 +6,7 @@
 # uDistil-Whisper: Label-Free Data Filtering for Knowledge Distillation in Low-Data Regimes ( NAACL'2025 )
 
 <p align="center"><a href="https://macabdul9.github.io/" target="_blank">Abdul Waheed</a>, <a href="Karima Kadaoui
-" target="_blank">Karima Kadoui</a>,  <a href="https://scholar.google.com/citations?user=IWcGY98AAAAJ&hl=en"> Bhiksha Raj</a> <a href="https://mageed.arts.ubc.ca/" target="_blank">Muhammad Abdul-Mageed</a></p>
+" target="_blank">Karima Kadoui</a>,  <a href="https://scholar.google.com/citations?user=IWcGY98AAAAJ&hl=en"> Bhiksha Raj</a>, <a href="https://mageed.arts.ubc.ca/" target="_blank">Muhammad Abdul-Mageed</a></p>
 <p align="center" float="left">
   <img src="assets/cmu_logo.png" height="40" />
   <img src="assets/ubc_logo.png" height="40" />
@@ -27,6 +27,32 @@
 <!-- I want text in red -->
 <font color='red'>Note: Do not public OpenBible data as it is behind LDC paywall and we don't have authority to share the data publically. https://www.ldc.upenn.edu/data-management/using-data/user-agreements/iarpa-swahili.</font>
 
+
+## Running Evaluation 
+
+1. Running `openai/whisper-large-v2` on `google/fleurs` ar_eg test set. 
+```bash
+python evaluate.py \
+    --model_name_or_path openai/whisper-large-v2 \
+    --dataset_name_or_path google/fleurs \
+    --config ar_eg \
+    --split test \
+    --audio_column audio \
+    --text_column transcription \
+    --do_normalize \
+    --device mps \
+```
+Expected output: 
+```
+{
+  "WER": 0.0,
+  "CER": 0.0,
+  "SER": 0.0,
+  "speed": 0.0
+}
+```
+2. Running our distilled models on `google/fleurs` ar_eg test set. 
+```bash
 
 ## Models
 #### Main Models
