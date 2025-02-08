@@ -16,7 +16,7 @@
 **Abstract**: Recent work on distilling Whisper's knowledge into small models using pseudo-labels shows promising performance while reducing the size by up to 50\%. This results in small, efficient, and dedicated models. However, a critical step of distillation using pseudo-labels involves filtering high-quality predictions and using only those during training. This step requires ground truth labels to compare with and filter low-quality examples, making the process supervised. Additionally, the distillation process requires a large amount of data thereby limiting its applicability in low-resource settings. To address this, we propose a distillation framework that does not require any labeled data. Through experimentation, we show that our best distilled models outperform the teacher model by 5-7 WER points and are on par with or outperform similar supervised data filtering setups. When scaling the data, our models significantly outperform all zero-shot and supervised models. They are also 25-50\% more compute- and memory-efficient while maintaining performance equal to or better than that of the teacher model.
 
 <!-- TOC -->
-Table of Contents
+**Table of Contents**
 
 1. [Running Evaluation](#running-evaluation)
 2. [Models](#models)
