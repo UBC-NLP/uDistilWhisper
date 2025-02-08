@@ -4,17 +4,35 @@ import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 from datasets import load_dataset
-import torchaudio
 from tqdm import tqdm
 import functools
 import jiwer
 import json 
 import librosa
+import re
+import pandas as pd
+import os
 
-from transformers.models.whisper.english_normalizer import BasicTextNormalizer
+def preprocess(text):
+    # Based on https://arxiv.org/pdf/2105.14779.pdf
 
-# Initialize normalizer
-normalizer = BasicTextNormalizer()
+    # 1- remove the sepecial cahrachters and diacritics
+    #   -- We did NOT convert the Latin characters to lower case as we are not working on Code-Switch dataset, so we removed all the Latin letters.
+    text = re.sub(r"[^0-9\u0621-\u064A\u0660-\u0669%@\s]", "", text)
+    # text = re.sub(r"[^0-9\u0600-\u06FF\u0660-\u0669%@\s]", "", text) #065E # include diacritics
+
+    # 2- transliterating all Arabic digits to Arabic numerals (We used Whisper to verify the numerical output)
+    text = re.sub(r"[٠-٩]",lambda x: str(int(x.group())), text)
+
+    # 3- Normalize alefs
+    text = re.sub("[إأٱآا]", "ا", text)
+
+    # For Haa nad Taa, we didn't see a problem in CV9.0 data. (We need to discuss this further)
+
+    # - Remove extra spaces
+    text = " ".join(text.split())
+    
+    return text
 
 def resample_audio(example, audio_column="audio", target_sample_rate=16000):
     """
@@ -44,50 +62,38 @@ def compute_metrics(ground_truths, hypothesis):
         dict: A dictionary with WER, CER, total errors, and reference length.
     """
     # Normalize texts
-    normalized_gt = [normalizer(gt) for gt in ground_truths]
-    normalized_hypothesis = [normalizer(h) for h in hypothesis]
 
-    # Compute metrics using jiwer
-    word_output = jiwer.process_words(
-        reference=normalized_gt,
-        hypothesis=normalized_hypothesis
-    )
-    characters_output = jiwer.process_characters(
-        reference=normalized_gt,
-        hypothesis=normalized_hypothesis,
-    )
-    
-    # Compute total errors
-    nwErrors = word_output.substitutions + word_output.insertions + word_output.deletions
-    ncErrors = characters_output.substitutions + characters_output.insertions + characters_output.deletions
-    
-    WER = word_output.wer
-    CER = characters_output.cer
+    # Compute the WER and CER
+    WER = jiwer.wer(ground_truths, hypothesis)
+    CER = jiwer.cer(ground_truths, hypothesis)
     
     # scaling the WER and CER so that the scale is same as o and ncErrors
 
     return {
         "WER": round(WER*100, 2),
         "CER": round(CER*100, 2),
-        "nwErrors": nwErrors,
-        "ncErrors": ncErrors,
-        "wRefLength": len(word_output.references[0]),  # Length of the reference
-        "cRefLength": len(characters_output.references[0])  # Length of the reference
     }
 
 def load_model(model_name_or_path, device="auto"):
     model = AutoModelForSpeechSeq2Seq.from_pretrained(model_name_or_path, device_map=device)
     processor = AutoProcessor.from_pretrained(model_name_or_path)
+    
+    model.config.forced_decoder_ids = processor.get_decoder_prompt_ids(language="ar", task="transcribe")
+        
     return {"model": model, "processor": processor}
 
-def transcribe_audio(model_dict, audio):
+def transcribe_audio(model_dict, audio, sampling_rate=16_000):
+    
     processor = model_dict["processor"]
     model = model_dict["model"]
-    inputs = processor(audio, return_tensors="pt", padding="longest")
+    
+    input_features = processor(audio, sampling_rate=sampling_rate, return_tensors="pt").input_features.to(model.device)
+    
     with torch.no_grad():
-        logits = model(input_values=inputs.input_values).logits
-    pred_ids = torch.argmax(logits, dim=-1)
-    return processor.batch_decode(pred_ids)
+        pred_ids = model.generate(input_features, forced_decoder_ids=model.config.forced_decoder_ids)
+
+    output = processor.batch_decode(pred_ids, skip_special_tokens=True)[0].strip()
+    return output
 
 
 def main(args):
@@ -100,8 +106,8 @@ def main(args):
     dataset = load_dataset(args.dataset_name_or_path, args.config, split=args.split)
     
     # sample the dataset
-    if args.n_samples is not None:
-        dataset = dataset.shuffle(seed=args.seed).select(range(min(args.n_samples, len(dataset))))
+    if args.num_samples is not None:
+        dataset = dataset.shuffle(seed=args.seed).select(range(min(args.num_samples, len(dataset))))
     
     # resample function
     resample_fn = functools.partial(resample_audio, audio_column=args.audio_column, target_sample_rate=args.sample_rate)
@@ -124,16 +130,24 @@ def main(args):
         # Append the hypothesis and the ground truth
         hypothesis.append(output)
         ground_truths.append(example[args.text_column])
+        
+    # Normalize the texts
+    df = pd.DataFrame({"ground_truths": ground_truths, "hypothesis": hypothesis})
+    
+    if args.do_normalize:
+        df["ground_truths"] = df["ground_truths"].apply(preprocess)
+        df["hypothesis"] = df["hypothesis"].apply(preprocess)
+    
     
     # Compute the metrics
-    metrics = compute_metrics(ground_truths=ground_truths, hypothesis=hypothesis)
+    metrics = compute_metrics(ground_truths=df["ground_truths"].values.tolist(), hypothesis=df["hypothesis"].values.tolist())
     
     model_id = args.model_name_or_path.split("/")[-1]
     dataset_id = args.dataset_name_or_path.split("/")[-1]
     metrics["model_id"] = model_id
     metrics["dataset_id"] = dataset_id
     metrics["split"] = args.split
-    metrics["n_samples"] = len(dataset)
+    metrics["num_samples"] = len(dataset)
     
     
     # Print the metrics
@@ -143,16 +157,10 @@ def main(args):
     
     if args.output_dir is not None:
         output_dir = args.output_dir
-        output_dir.mkdir(exist_ok=True, parents=True)
-        output_path = output_dir / f"{model_id}_{dataset_id}_{args.split}.json"
+        os.makedirs(output_dir, exist_ok=True)
+        output_path = f"{output_dir}/{model_id}_{dataset_id}_{args.split}_metrics.json"
         with open(output_path, "w") as f:
             json.dump(metrics, f)
-    
-    
-    
-    
-    
-    
 
 
 if __name__ == '__main__':
@@ -163,7 +171,7 @@ if __name__ == '__main__':
     parser.add_argument("--dataset_name_or_path", type=str, default="fluers", help="The name of the dataset to use (via the datasets library). It should be either a local path or a dataset identifier on hub.")
     parser.add_argument("--config", type=str, default=None, help="Defines the configuration of the dataset. Default to None.")
     parser.add_argument("--split", type=str, default="test", help="The dataset split to evaluate.")
-    parser.add_argument("--n_samples", type=int, default=None, help="The number of samples to evaluate. Default to None.")
+    parser.add_argument("--num_samples", type=int, default=None, help="The number of samples to evaluate. Default to None.")
     parser.add_argument("--audio_column", type=str, default="audio", help="The name of the audio column in the dataset.")
     parser.add_argument("--text_column", type=str, default="transcription", help="The name of the text column in the dataset.")
     parser.add_argument("--sample_rate", type=int, default=16_000, help="The sample rate to resample the audio to.")
@@ -173,8 +181,6 @@ if __name__ == '__main__':
     parser.add_argument("--num_proc", type=int, default=1, help="The number of processes to use for evaluation.")
     parser.add_argument("--output_dir", type=str, default=None, help="The output directory where the evaluation results will be saved.")
 
-    
-    
     args = parser.parse_args()
     main(args)
 
