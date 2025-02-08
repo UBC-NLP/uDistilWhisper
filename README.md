@@ -69,7 +69,7 @@ Expected output:
 
 ```bash
 python evaluate.py \
-    --model_name_or_path macabdul9/distil-large-v2-init-16-16-100K-225-sm4t \
+    --model_name_or_path UBC-NLP/distil-large-v2-init-16-16-100K-225-sm4t \
     --dataset_name_or_path UBC-NLP/SADA2022-eval \
     --config default \
     --split test \
@@ -98,14 +98,14 @@ Expected output:
 #### Main Models
 | Model                | Path                                                                                                           |
 |----------------------|----------------------------------------------------------------------------------------------------------------|
-| UDW-16-16-100K-sonar  | [distil-large-v2-init-16-16-100K-225-sonar_sim](https://huggingface.co/macabdul9/distil-large-v2-init-16-16-100K-225-sonar_sim) |
-| UDW-16-16-100K-proxy  | [distil-large-v2-init-16-16-100K-225-sm4t](https://huggingface.co/macabdul9/distil-large-v2-init-16-16-100K-225-sm4t)       |
-| UDW-32-16-100K-sonar  | [distil-large-v2-init-32-16-100K-225-sonar_sim](https://huggingface.co/macabdul9/distil-large-v2-init-32-16-100K-225-sonar_sim) |
-| UDW-32-16-100K-proxy  | [distil-large-v2-init-32-16-100K-225-sm4t](https://huggingface.co/macabdul9/distil-large-v2-init-32-16-100K-225-sm4t)       |
-| UDW-16-16-500K-sonar  | [distil-large-v2-init-16-16-500K-225-sonar_sim](https://huggingface.co/macabdul9/distil-large-v2-init-16-16-500K-225-sonar_sim) |
-| UDW-16-16-500K-proxy  | [distil-large-v2-init-16-16-500K-225-sm4t](https://huggingface.co/macabdul9/distil-large-v2-init-16-16-500K-225-sm4t)       |
-| UDW-32-16-500K-sonar  | [distil-large-v2-init-32-16-500K-225-sonar_sim](https://huggingface.co/macabdul9/distil-large-v2-init-32-16-500K-225-sonar_sim) |
-| UDW-32-16-500K-proxy  | [distil-large-v2-init-32-16-500K-225-sm4t](https://huggingface.co/macabdul9/distil-large-v2-init-32-16-500K-225-sm4t)       |
+| UDW-16-16-100K-sonar  | [distil-large-v2-init-16-16-100K-225-sonar_sim](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-100K-225-sonar_sim) |
+| UDW-16-16-100K-proxy  | [distil-large-v2-init-16-16-100K-225-sm4t](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-100K-225-sm4t)       |
+| UDW-32-16-100K-sonar  | [distil-large-v2-init-32-16-100K-225-sonar_sim](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-100K-225-sonar_sim) |
+| UDW-32-16-100K-proxy  | [distil-large-v2-init-32-16-100K-225-sm4t](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-100K-225-sm4t)       |
+| UDW-16-16-500K-sonar  | [distil-large-v2-init-16-16-500K-225-sonar_sim](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-500K-225-sonar_sim) |
+| UDW-16-16-500K-proxy  | [distil-large-v2-init-16-16-500K-225-sm4t](https://huggingface.co/UBC-NLP/distil-large-v2-init-16-16-500K-225-sm4t)       |
+| UDW-32-16-500K-sonar  | [distil-large-v2-init-32-16-500K-225-sonar_sim](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-500K-225-sonar_sim) |
+| UDW-32-16-500K-proxy  | [distil-large-v2-init-32-16-500K-225-sm4t](https://huggingface.co/UBC-NLP/distil-large-v2-init-32-16-500K-225-sm4t)       |
 					
 					
 
@@ -136,7 +136,6 @@ Expected output:
 |---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | Dataset-100K    | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_100K](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_100K)    |
 | Dataset-500K    | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_500K](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_500K)    |
-| Dataset-1M      | [masc_cv15_asc_fleurs_mgb5_mgb2_qasr_1M](https://huggingface.co/datasets/UBC-NLP/masc_cv15_asc_fleurs_mgb5_mgb2_qasr_1M)          |
 
 
 
@@ -180,15 +179,17 @@ If you find our work useful, please consider citing our paper and the related wo
 
 Related Work:
 ```
-@misc{waheed2024distill,
-      title={To Distill or Not to Distill? On the Robustness of Robust Knowledge Distillation}, 
-      author={Abdul Waheed and Karima Kadaoui and Muhammad Abdul-Mageed},
-      year={2024},
-      eprint={2406.04512},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      publisher = {ACL2024},
+@inproceedings{waheed-etal-2024-distill,
+  title = "To Distill or Not to Distill? On the Robustness of Robust Knowledge Distillation",
+  author = "Waheed, Abdul and Kadaoui, Karima and Abdul-Mageed, Muhammad",
+  booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics",
+  year = "2024",
+  month = aug,
+  pages = "12603--12621",
+  url = "https://aclanthology.org/2024.acl-long.680/",
+  doi = "10.18653/v1/2024.acl-long.680"
 }
+
 ```
 We ran our experiments based on [Gandhi et. al.](https://arxiv.org/abs/2406.04512) with some modification. If you find our work helpful, please also consider citing their and original Whisper paper.
 

@@ -1,8 +1,7 @@
 # Author : Abdul Waheed
 
 import torch
-from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
-from transformers import WhisperProcessor, WhisperForConditionalGeneration
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 from datasets import load_dataset
 from tqdm import tqdm
 import functools

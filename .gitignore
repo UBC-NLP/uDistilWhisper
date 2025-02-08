@@ -122,3 +122,4 @@ dmypy.json
 
 logs
 outputs
+download_models.py
