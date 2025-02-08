@@ -120,5 +120,5 @@ dmypy.json
 # pyright type checker
 .pyright
 
-logs/
-outputs/
+logs
+outputs

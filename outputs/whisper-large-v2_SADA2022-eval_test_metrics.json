@@ -1,1 +1,0 @@
-{"WER": 78.32, "CER": 62.15, "model_id": "whisper-large-v2", "dataset_id": "SADA2022-eval", "split": "test", "n_samples": 1000}

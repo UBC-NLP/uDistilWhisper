@@ -1,1 +1,0 @@
-{"WER": 68.64, "CER": 46.21, "model_id": "distil-large-v2-init-16-16-100K-225-sm4t", "dataset_id": "SADA2022-eval", "split": "test", "n_samples": 1000}
