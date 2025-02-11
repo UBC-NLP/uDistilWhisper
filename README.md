@@ -214,4 +214,4 @@ We ran our experiments based on [Gandhi et. al.](https://arxiv.org/abs/2406.0451
 ```
 
 ### Contact
-For any queries, please contact Abdul Waheed (abdulwaheed1513@gmail.com) or Karima Kadaoui (karima.kadaoui@gmail.com). 
+For any queries, please contact Abdul Waheed (abdulwaheed1513@gmail.com) or Karima Kadaoui (karima.kadaoui@mbzuai.ac.ae). 
